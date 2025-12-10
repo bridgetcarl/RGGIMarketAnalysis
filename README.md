@@ -268,3 +268,116 @@ As demonstrated in the above models, not all states experienced statistically si
 
 ## *V.II.I Visual Analysis* 
 Figure 4 below depicts the change in average price per allowance sold at RGGI auction from its inception until Q2 2024.
+
+<img width="1589" height="670" alt="image" src="https://github.com/user-attachments/assets/ff93a9e3-f3d5-4887-b301-5b544fac5f40" />
+
+<img width="1589" height="670" alt="image" src="https://github.com/user-attachments/assets/cc8dcf11-7945-4775-946d-85503ea3041e" />
+
+
+Interestingly, the average auction price of credits across the entire RGGI period is very similar across states. As seen in Figure 5 below, most states had an average auction price of $5.89 USD, except for New Jersey with an average price of $7.66 USD. Note that this analysis excludes auction prices and emissions for Virgina, who joined the RGGI in 2020 where there was a sharp increase in auction prices across the board. The average auction price in Virgina for the last four years was $12.14. 
+
+<img width="1589" height="670" alt="image" src="https://github.com/user-attachments/assets/b55cbae5-a517-4518-98cf-f185228d20d2" />
+
+
+Further, Figure 6 below depicts the change in average auction price over the RGGI period, further exemplifying the consistency across states in price trends during the RGGI period. Only Maryland and New Jersey seemed to be less effected by a 2017 jump in average auction price. RGGI states agreed to increase their increase their emissions reduction annually by an additional 30% by 2030 in Q3 2017 (RGGI Inc., 2017), which can explain the sudden but short-term increase in average auction price in late 2017 across states. 
+
+
+<img width="1589" height="670" alt="image" src="https://github.com/user-attachments/assets/59a13683-4630-4b08-90d2-51dcd662fa06" />
+
+
+## *V.II.II Statistical Analysis*
+The correlation regression analysis attempts to invalidate the second null hypothesis, H0: There is no correlation between average allowance price and subsequent change in CO2 emissions following the implementation of the RGGI. 
+
+To begin the formal correlation analysis between auction sell price and subsequent changes in emissions levels, a simple correlation analysis is conducted the visualize the relationship between the auction price and emissions data. Figure 7 below further depicts the correlation between variables in the combined dataset. Unsurprisingly given the analysis of the first null hypothesis, CO2 emissions (defined as ‘CO2.Mass..short.tons’) and quarter (defined as ‘YearQuarterCode’) are slightly negatively correlated. Interestingly, change in CO2 emissions (defined as ‘CO2_delta’) and previous quarter’s auction price (defined as ‘lag_price’) are also slightly negatively correlated. 
+
+
+<img width="1589" height="670" alt="image" src="https://github.com/user-attachments/assets/ecc3d1e9-459b-4592-842c-a411ef634a9d" />
+
+
+This relationship is analyzed further in the below scatter plot (Figure 8).
+
+
+<img width="1589" height="670" alt="image" src="https://github.com/user-attachments/assets/3fefce2c-a88a-4a37-95e3-c18250b66039" />
+
+
+## *V.II.II.I Regression analysis- relationship between price and change in CO2 emissions across all states*
+Model 2.1 estimates the correlation between previous quarter’s auction price and current quarter-over-quarter change in CO2 emissions. 
+
+### Model 2.1: Price vs. CO₂ Delta
+
+**Dependent variable:** `CO2_delta`
+
+| Term      | Estimate | Std. Error | Signif. |
+|----------|---------:|-----------:|:-------:|
+| lag_price| -0.0003  | 0.0002     | **      |
+| Constant | -0.004   | 0.001      | ***     |
+
+**Model fit**
+
+- **Observations:** 592  
+- **R²:** 0.007  
+- **Adjusted R²:** 0.005  
+- **Residual Std. Error:** 0.015 (df = 590)  
+- **F Statistic:** 4.038** (df = 1; 590)  
+
+*Note: \*p<0.1; \*\*p<0.05; \*\*\*p<0.01*
+
+
+According to the regression estimate from model 2.1, across all RGGI states between Q1 2009 and Q1 2024, a $1 change in last quarter’s average auction price resulted in a 0.0003 percentage point decrease in CO2 emissions quarter-over-quarter. This estimate is significant at the 95% level. This relationship is analyzed further in model 2.2, below.
+
+### Model 2.2: Price vs. CO₂ Delta, by State
+
+**Dependent variable:** `CO2_delta`
+
+| Term      | Estimate | Std. Error | Signif. |
+|-----------|---------:|-----------:|:-------:|
+| lag_price | -0.0003  | 0.0001     | **      |
+| StateDE   | -0.0020  | 0.0030     |         |
+| StateMA   | -0.0002  | 0.0030     |         |
+| StateMD   | -0.0004  | 0.0030     |         |
+| StateME   | -0.0070  | 0.0030     | ***     |
+| StateNH   | -0.0010  | 0.0030     |         |
+| StateNJ   | -0.0002  | 0.0030     |         |
+| StateNY   | -0.0010  | 0.0030     |         |
+| StateRI   | -0.0003  | 0.0030     |         |
+| StateVT   | -0.0150  | 0.0030     | ***     |
+| Constant  | -0.0010  | 0.0020     |         |
+
+**Model fit**
+
+- **Observations:** 592  
+- **R²:** 0.108  
+- **Adjusted R²:** 0.093  
+- **Residual Std. Error:** 0.014 (df = 581)  
+- **F Statistic:** 7.043*** (df = 10; 581)  
+
+*Note: \*p<0.1; \*\*p<0.05; \*\*\*p<0.01*
+
+
+
+Model 2.2 estimates the correlation between previous quarter’s auction price and current quarter-over-quarter change in CO2 emissions, by state. When controlling for state-wide differences in auction price between Q1 2009 and Q1 2024, a $1 change in last quarter’s average auction price resulted in a 0.0003 percentage point decrease in CO2 emissions quarter-over-quarter. This estimate is significant at the 95% level. The relationship between auction price and quarter-over-quarter change to emissions was negative in all RGGI states. The only states with statistically significant correlations between auction price and change to CO2 emissions were Maine and Vermont. Both states showed a negative and statistically significant (at 99%) decline in CO2 emissions following the implementation of the RGGI, per model 1.2.1. 
+
+## VI. Conclusion
+In the model described, there was no statistically significant difference in CO2 emissions in RGGI states before and after the implementation of the policy in 2009. The model itself could be a poor fit, especially if there are state-level differences in regulatory environment or the energy production ecosystem. There also could be differences in electricity demand between states. With further time and resources, a model should be used to account for state-level fixed effects to control for differences in emissions across entities.
+
+As predicted in the theoretical background, there was price elasticity of demand for auction prices for carbon credits, demonstrated by a statistically significant and negative correlation between the previous quarter’s average auction price and current quarter-over-quarter change in CO2 emissions across states. Again, with further time and resources, this correlation should be conducted controlling for state-level fixed effects for robustness. 
+
+
+## Bibliography
+Chan, H. R., Chupp, B. A., Cropper, M. L., & Muller, N. Z. (2018). The impact of trading on the costs and benefits of the Acid Rain Program. Journal of Environmental Economics and Management, 88, 180–209. https://doi.org/10.1016/j.jeem.2017.11.004
+
+Chen, Y. (2009). Does a regional greenhouse gas policy make sense? A case study of carbon leakage and emissions spillover. Energy Economics, 31(5), 667–675. https://doi.org/10.1016/j.eneco.2009.02.003
+
+Colby, B. G. (2000). Cap-and-Trade Policy Challenges: A tale of three markets. Land Economics, 76(4), 638. https://doi.org/10.2307/3146957
+
+Conniff, R. (2013, November 16). The political history of cap and trade. Smithsonian Magazine. https://www.smithsonianmag.com/science-nature/the-political-history-of-cap-and-trade-34711212/.
+
+Ellerman, A. (2003). Are cap-and-trade programs more environmentally effective than conventional regulation? In MIT Center for Energy and Environmental Policy Research (No. 03-015 WP). Massachusetts Institute of Technology. Retrieved June 14, 2024, from https://dspace.mit.edu/bitstream/handle/1721.1/45008/2003-015.pdf?sequence=1&isAllowed=y
+
+Murray, B. C., & Maniloff, P. T. (2015). Why have greenhouse emissions in RGGI states declined? An econometric attribution to economic, energy market, and policy factors. Energy Economics, 51, 581–589. https://doi.org/10.1016/j.eneco.2015.07.013
+
+RGGI Inc. (2017). RGGI States Announce Proposed Program Changes: Additional 30% EmissionsCap Decline by 2030. In The Regional Greenhouse Gas Initiative. Retrieved August 10, 2024, from https://www.rggi.org/sites/default/files/Uploads/Program-Review/8-23-2017/Announcement_Proposed_Program_Changes.pdf
+
+Ruth, M., Gabriel, S. A., Palmer, K. L., Burtraw, D., Paul, A., Chen, Y., Hobbs, B. F., Irani, D., Michael, J., Ross, K. M., Conklin, R., & Miller, J. (2008). Economic and energy impacts from participation in the regional greenhouse gas initiative: A case study of the State of Maryland. Energy Policy, 36(6), 2279–2289. https://doi.org/10.1016/j.enpol.2008.03.012
+
+The Regional Greenhouse Gas Initiative: lessons learned and issues for Congress. (2017). In Congressional Research Service (No. R41836). US Congress. Retrieved June 14, 2024, from https://crsreports.congress.gov/product/pdf/R/R41836/14
